@@ -102,11 +102,11 @@ def generate_doc_from_each_end_point(
                         route.method.lower():
                             yaml.load(f.read())
                     }
-            except yaml.YAMLError:
+            except yaml.YAMLError as e:
                 end_point_doc = {
                     route.method.lower(): {
                         "description": "⚠ Swagger document could not be "
-                                       "loaded from file ⚠",
+                                       f"loaded from file: {e} ⚠",
                         "tags": ["Invalid Swagger"]
                     }
                 }
